@@ -8,7 +8,7 @@ Original file is located at
 """
 
 # Install necessary libraries quietly (-q suppresses output)
-#!pip install gradio pillow easyocr -q
+#!pip install gradio torch pillow easyocr -q
 
 # Import necessary libraries
 import os # Provides access to environment variables and file system operations
@@ -22,12 +22,12 @@ import torch  # Explicitly import torch
 import torchvision  # Explicitly import torchvision
 
 # Initialize OCR reader
-reader = easyocr.Reader(['en'], download_enabled=True, gpu=False)
+reader = easyocr.Reader(['en'])
 
 # DeepSeek API configuration
-from google.colab import userdata
+#from google.colab import userdata
 
-API_KEY = userdata.get('deepseek_api')  # Retrieves the secret from environment variables
+#API_KEY = userdata.get('deepseek_api')  # Retrieves the secret from environment variables
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 def extract_numbers(image_path):
@@ -99,7 +99,7 @@ def solve_with_deepseek(formatted_grid, variables):
     }
 
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
+        "Authorization": f"Bearer {deepseek_api}",
         "Content-Type": "application/json"
     }
 
