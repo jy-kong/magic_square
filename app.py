@@ -28,6 +28,7 @@ reader = easyocr.Reader(['en'])
 #from google.colab import userdata
 
 #API_KEY = userdata.get('deepseek_api')  # Retrieves the secret from environment variables
+API_KEY = os.environ.get("DEEPSEEK_API") # FOR GITHUB
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 def extract_numbers(image_path):
@@ -99,7 +100,7 @@ def solve_with_deepseek(formatted_grid, variables):
     }
 
     headers = {
-        "Authorization": f"Bearer {deepseek_api}",
+        "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
     }
 
